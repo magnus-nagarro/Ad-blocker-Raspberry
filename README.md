@@ -1,6 +1,7 @@
 ### START ###
 
 docker build -t "name" .
+###
 docker run "name"
 
 ### ABOUT ###
