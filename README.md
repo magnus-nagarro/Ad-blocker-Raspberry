@@ -1,8 +1,14 @@
 ### START ###
 
-docker build -t "name" .
-###
-docker run "name"
+docker compose up
+
+### STOP ###
+
+docker compose down
+
+### RESTART ###
+
+docker compose restart
 
 ### ABOUT ###
 
