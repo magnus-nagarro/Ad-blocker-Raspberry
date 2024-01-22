@@ -18,9 +18,24 @@ class mongodb:
         }
         exists = collection.find_one(insert_buffer)
         if exists:
-            return f"{False}, Link exists already!"
+            return {"success": False,
+                    "error": "URL exists already"}
         try:
             collection.insert_one(insert_buffer)
             return True
         except Exception as e:
-            return f"{False}, Error: {e}"
+            return {"success": False,
+                    "error": e}
+
+    def return_links(self):
+        database = self.client["Links"]
+        collection = database["Blocked"]
+        links = collection.find({})
+        return_buffer = list()
+        for link in links:
+            try:
+                return_buffer.append(link["link"])
+            except Exception as e:
+                return {"success": False,
+                        "error": e}
+        return return_buffer
