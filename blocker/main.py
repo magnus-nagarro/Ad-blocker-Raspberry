@@ -38,6 +38,7 @@ class Backend(mongodb):
             self.running = False
             return jsonify({"running": self.running})
 
+        # Endpoint to return all links in the blocked list, call with /blocked => [GET]
         @app.route("/blocked", methods=["GET"])
         def blocked():
             return_buffer = self.db.return_links()
