@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   backend:
+    depends_on:
+      - mongodb
     build:
       context: ./blocker
     ports:
@@ -10,6 +12,13 @@ services:
     container_name: blocker
     volumes:
       - ./blocker:/app
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
   nginx:
     image: nginx:latest
     restart: always
