@@ -1,17 +1,26 @@
 import requests
 from flask import Flask, jsonify, request, Response
+from MongoDB import mongodb
 
 
-class Backend:
+class Backend(mongodb):
     def __init__(self) -> None:
-        pass
+        self.db = mongodb()
 
     def create_app(self):
         app = Flask(__name__)
 
-        @app.route('/test', methods=['GET'])
+        @app.route("/test", methods=["GET"])
         def test():
             return "Hello World"
+
+        @app.route("/add", methods=["POST"])
+        def add_links():
+            link = request.args.get('link')
+            if not link:
+                return jsonify("Please provide a link!")
+            success = self.db.add_links(link)
+            return jsonify(f"success: {success}")
 
         return app
 
