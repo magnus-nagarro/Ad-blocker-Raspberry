@@ -13,7 +13,7 @@ services:
     volumes:
       - ./blocker:/app
   mongodb:
-    image: mongo:latest
+    image: mongo:4.4.28
     restart: always
     volumes:
       - ./data:/data/db
