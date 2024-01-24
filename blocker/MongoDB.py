@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from __init__ import *
 
 
 class mongodb:
@@ -22,7 +22,7 @@ class mongodb:
                     "error": "URL exists already"}
         try:
             collection.insert_one(insert_buffer)
-            return True
+            return {"success": True}
         except Exception as e:
             return {"success": False,
                     "error": e}

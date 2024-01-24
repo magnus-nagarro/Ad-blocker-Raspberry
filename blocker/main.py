@@ -1,10 +1,9 @@
-import requests
-from flask import Flask, jsonify, request, Response, logging
-from MongoDB import mongodb
+from __init__ import *
 
 
 class Backend(mongodb):
     def __init__(self) -> None:
+        self.logger = Flask.logger
         self.db = mongodb()
         self.running = False
 
