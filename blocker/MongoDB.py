@@ -39,3 +39,17 @@ class mongodb:
                 return {"success": False,
                         "error": e}
         return return_buffer
+
+    def delete_links(self, link):
+        database = self.client["Links"]
+        collection = database["Blocked"]
+        exists = collection.find_one({"link": link})
+        if exists:
+            try:
+                collection.delete_one({"link": link})
+                return {"success": True}
+            except Exception as e:
+                return {"success": False,
+                        "error": e}
+        return {"success": False,
+                "error": "Link not found in the Database!"}

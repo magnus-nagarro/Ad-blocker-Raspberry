@@ -43,6 +43,16 @@ class Backend(mongodb):
             return_buffer = self.db.return_links()
             return jsonify(return_buffer)
 
+        # Endpoint to delete a link from the database, call with /delete?link="" => [DELETE]
+        @app.route("/delete", methods=["DELETE"])
+        def delete():
+            link = request.args.get("link")
+            if not link:
+                return jsonify({"success": False,
+                                "error": "Please provide a link!"})
+            success = self.db.delete_links(link)
+            return jsonify(success)
+
         return app
 
 
