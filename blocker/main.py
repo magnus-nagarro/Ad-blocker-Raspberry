@@ -62,7 +62,7 @@ if __name__ == "__main__":
         app = backend.create_app()
         app.run(host='0.0.0.0', port=8080)
         blocker_thread = threading.Thread(
-            target=backend.block.blocker_loop, args=[backend.running, ])
+            target=backend.block.blocker_loop)
         blocker_thread.start()
     except Exception as e:
         print(f"An error occured, error: {e}")
