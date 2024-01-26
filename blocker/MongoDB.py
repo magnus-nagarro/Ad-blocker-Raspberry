@@ -53,3 +53,25 @@ class mongodb:
                         "error": e}
         return {"success": False,
                 "error": "Link not found in the Database!"}
+
+    def blocker_on_off(self, running):
+        database = self.client["Running"]
+        collection = database["dummy"]
+        if running:
+            dummy_data = {
+                "dummy": 1
+            }
+            collection.insert_one(dummy_data)
+        else:
+            collection.drop()
+
+    def should_blocker_run(self):
+        database = self.client["Running"]
+        names = database.list_collection_names()
+        for name in names:
+            buff = name.find('dummy')
+            if buff != -1:
+                return True
+            else:
+                continue
+        return False

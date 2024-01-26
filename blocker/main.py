@@ -1,11 +1,11 @@
 from __init__ import *
 
 
-class Backend(mongodb):
+class Backend(mongodb, blocker):
     def __init__(self) -> None:
         self.logger = Flask.logger
         self.db = mongodb()
-        self.running = False
+        self.block = blocker(self.db)
 
     def create_app(self):
         app = Flask(__name__)
@@ -28,14 +28,14 @@ class Backend(mongodb):
         # Endpoint to start the addblocker, call with /start => [POST]
         @app.route("/start", methods=["POST"])
         def start():
-            self.running = True
-            return jsonify({"running": self.running})
+            success = self.db.blocker_on_off(True)
+            return jsonify({"running": True})
 
         # Endpoint to stop the addblocker, call with /stop => [POST]
         @app.route("/stop", methods=["POST"])
         def stop():
-            self.running = False
-            return jsonify({"running": self.running})
+            success = self.db.blocker_on_off(False)
+            return jsonify({"running": False})
 
         # Endpoint to return all links in the blocked list, call with /blocked => [GET]
         @app.route("/blocked", methods=["GET"])
@@ -61,6 +61,9 @@ if __name__ == "__main__":
         backend = Backend()
         app = backend.create_app()
         app.run(host='0.0.0.0', port=8080)
+        blocker_thread = threading.Thread(
+            target=backend.block.blocker_loop, args=[backend.running, ])
+        blocker_thread.start()
     except Exception as e:
         print(f"An error occured, error: {e}")
     finally:
