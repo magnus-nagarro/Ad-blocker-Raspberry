@@ -75,3 +75,17 @@ class mongodb:
             else:
                 continue
         return False
+
+    def logger(self, ip):
+        database = self.client["Logged"]
+        collection = database["Ips"]
+
+        data = {
+            "ip": ip,
+        }
+
+        try:
+            collection.insert_one(data)
+            return True
+        except:
+            return False

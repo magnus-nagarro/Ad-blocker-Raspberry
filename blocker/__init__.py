@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, Response, logging
 from pymongo import MongoClient
 import threading
 import dhcppython
+import socket
 
 # own modules
 from MongoDB import mongodb
