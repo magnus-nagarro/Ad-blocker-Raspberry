@@ -12,9 +12,14 @@ class blocker():
         while True:
             running = self.db.should_blocker_run()
             if running:
-                blocked_list = self.get_blocked_links()
-                incoming_packet = str()
+                host = "0.0.0.0"
+                port = "8080"
+                s.bind(host, port)
+                s = socket.socket(
+                    socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+                incoming_packet = s.recvfrom(1024)
+                # blocked_list = self.get_blocked_links()
                 parsed_packet = dhcppython.packet.DHCPPacket.from_bytes(
                     incoming_packet)
                 sender_ip = parsed_packet.ciaddr
-                print(sender_ip)
+                self.db.insert_one(sender_ip)
