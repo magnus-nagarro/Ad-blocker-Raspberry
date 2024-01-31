@@ -13,7 +13,7 @@ class blocker():
             running = self.db.should_blocker_run()
             if running:
                 host = "0.0.0.0"
-                port = "1111"
+                port = "8080"
                 s.bind(host, port)
                 s = socket.socket(
                     socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
