@@ -20,5 +20,6 @@ class blocker():
                 buff = {
                     "packet": incoming_packet
                 }
-                self.db.insert_one(buff)
+
+                self.db.logger(buff)
             sleep_time.sleep(0.01)

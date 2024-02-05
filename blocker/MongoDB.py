@@ -78,10 +78,10 @@ class mongodb:
 
     def logger(self, ip):
         database = self.client["Logged"]
-        collection = database["Ips"]
+        collection = database["Packets"]
 
         data = {
-            "ip": ip,
+            "packet": ip,
         }
 
         try:
