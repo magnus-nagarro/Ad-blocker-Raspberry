@@ -3,7 +3,6 @@ from __init__ import *
 
 class Backend(mongodb, blocker):
     def __init__(self) -> None:
-        self.logger = Flask.logger
         self.db = mongodb()
         self.block = blocker(self.db)
 
@@ -60,10 +59,9 @@ if __name__ == "__main__":
     try:
         backend = Backend()
         app = backend.create_app()
-        app.run(host='0.0.0.0', port=8080)
-        blocker_thread = threading.Thread(
-            target=backend.block.blocker_loop)
+        blocker_thread = threading.Thread(target=backend.block.blocker_loop)
         blocker_thread.start()
+        app.run(host='0.0.0.0', port=8080)
     except Exception as e:
         print(f"An error occured, error: {e}")
     finally:
