@@ -17,11 +17,8 @@ class blocker():
                     socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
                 incoming_packet = s.recvfrom(1024)
                 blocked_list = self.get_blocked_links()
-                try:
-                    parsed_packet = dhcppython.packet.DHCPPacket.from_bytes(
-                        incoming_packet)
-                except:
-                    continue
-                sender_ip = parsed_packet.ciaddr
-                self.db.insert_one(sender_ip)
+                buff = {
+                    "packet": incoming_packet
+                }
+                self.db.insert_one(buff)
             sleep_time.sleep(0.01)
