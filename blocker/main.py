@@ -52,6 +52,11 @@ class Backend(mongodb, blocker):
             success = self.db.delete_links(link)
             return jsonify(success)
 
+        @app.route("/packets", methods=["GET"])
+        def packets():
+            return_buffer = self.db.return_packets()
+            return jsonify(return_buffer)
+
         return app
 
 

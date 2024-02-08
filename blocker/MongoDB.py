@@ -89,3 +89,16 @@ class mongodb:
             return True
         except:
             return False
+
+    def return_packets(self):
+        database = self.client["Logged"]
+        collection = database["Packets"]
+        packets = collection.find({})
+        return_buffer = list()
+        for packet in packets:
+            try:
+                return_buffer.append(str(packet["packet"]))
+            except Exception as e:
+                return {"success": False,
+                        "error": e}
+        return return_buffer
