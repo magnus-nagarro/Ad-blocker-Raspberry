@@ -13,7 +13,7 @@ services:
     volumes:
       - ./blocker:/app
   mongodb:
-    image: mongo:4.4.28
+    image: mongo:3
     restart: always
     volumes:
       - ./data:/data/db
@@ -28,9 +28,9 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
   dnsmasq:
-    image: jpillora/dnsmasq:latest
+    image: 4km3/dnsmasq:latest
     restart: always
-    ports: 
+    ports:
       - "8000:8000"
     container_name: dnsmasq
     volumes:
