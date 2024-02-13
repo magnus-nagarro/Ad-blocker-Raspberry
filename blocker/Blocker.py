@@ -10,8 +10,13 @@ class blocker():
         return self.db.return_links()
 
     def packet_filter(self, packet):
+        blocked_list = self.get_blocked_links()
         if packet.haslayer(TCP):
-            return "google.com" in str(packet[TCP].payload)
+            for blocked in blocked_list:
+                if blocked in str(packet[TCP].payload):
+                    return True
+                else:
+                    continue
 
     def blocker_loop(self):
         while True:
@@ -20,12 +25,11 @@ class blocker():
             if running:
                 incoming_packet = sniff(
                     filter="tcp", stop_filter=self.packet_filter)
-                blocked_list = self.get_blocked_links()
                 buff = {
                     "packet": incoming_packet
                 }
-                # self.db.logger(buff)
-                print(buff)
+                self.db.logger(buff)
+                print(buff["packet"])
             sleep_time.sleep(0.01)
 
 
