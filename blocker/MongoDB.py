@@ -24,15 +24,14 @@ class mongodb:
     def logger(self, ip):
         database = self.client["Logged"]
         collection = database["Packets"]
-
         data = {
             "packet": ip,
         }
-
         try:
             collection.insert_one(data)
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False
 
     def return_links(self):
@@ -44,6 +43,6 @@ class mongodb:
             try:
                 return_buffer.append(link["link"])
             except Exception as e:
-                return {"success": False,
-                        "error": e}
+                print(e)
+                return False
         return return_buffer
