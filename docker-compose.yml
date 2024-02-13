@@ -5,15 +5,15 @@ services:
     depends_on:
       - mongodb
     build:
-      context: ./blocker
+      context: ./backend
     ports:
       - "8080:8080"
     restart: always
-    container_name: blocker
+    container_name: backend
     volumes:
-      - ./blocker:/app
+      - ./backend:/app
   mongodb:
-    image: mongo:3
+    image: mongo:latest
     restart: always
     volumes:
       - ./data:/data/db
