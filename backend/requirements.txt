@@ -1,5 +1,2 @@
-requests
 flask
 pymongo
-socket
-time
