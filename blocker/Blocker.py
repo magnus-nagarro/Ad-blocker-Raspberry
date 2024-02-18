@@ -49,6 +49,7 @@ class blocker():
                         try:
                             subprocess.run(
                                 ["sudo", "iptables", "-A", "OUTPUT", "-p", "tcp", "-d", link, "-j", "DROP"])
+                            print(f"Link {link} added to blacklist!")
                             self.already_blocked.append(link)
                         except Exception as e:
                             print(e)
@@ -58,6 +59,7 @@ class blocker():
                     try:
                         subprocess.run(
                             ["sudo", "iptables", "-D", "OUTPUT", "-p", "tcp", "-d", rules, "-j", "DROP"])
+                        print(f"Link {link} removed from blacklist!")
                     except Exception as e:
                         print(e)
                         continue
