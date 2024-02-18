@@ -25,14 +25,11 @@ class mongodb:
                 continue
         return False
 
-    def logger(self, ip):
+    def logger(self, blocked_packets):
         database = self.client["Logged"]
-        collection = database["Packets"]
-        data = {
-            "packet": ip,
-        }
+        collection = database["Stats"]
         try:
-            collection.insert_one(data)
+            collection.insert_one(blocked_packets)
             return True
         except Exception as e:
             print(e)
