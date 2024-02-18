@@ -12,7 +12,11 @@ class mongodb:
 
     def should_blocker_run(self):
         database = self.client["Running"]
-        names = database.list_collection_names()
+        try:
+            names = database.list_collection_names()
+        except Exception as e:
+            print(e)
+            return False
         for name in names:
             buff = name.find('dummy')
             if buff != -1:

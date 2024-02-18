@@ -61,7 +61,11 @@ class mongodb:
             dummy_data = {
                 "dummy": 1
             }
-            collection.insert_one(dummy_data)
+            try:
+                collection.insert_one(dummy_data)
+            except Exception as e:
+                return {"success": False,
+                        "error": e}
         else:
             collection.drop()
 
