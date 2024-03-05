@@ -13,7 +13,7 @@ services:
     volumes:
       - ./backend:/app
   mongodb:
-    image: mongo:latest
+    image: mongo:3
     restart: always
     volumes:
       - ./data:/data/db
@@ -27,11 +27,3 @@ services:
     container_name: nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-  dnsmasq:
-    image: 4km3/dnsmasq:latest
-    restart: always
-    ports:
-      - "8000:8000"
-    container_name: dnsmasq
-    volumes:
-      - ./dnsmasq.conf:/etc/dnsmasq.conf

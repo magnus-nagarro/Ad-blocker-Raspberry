@@ -81,3 +81,28 @@ class mongodb:
                 return {"success": False,
                         "error": e}
         return return_buffer
+
+    def should_blocker_run(self):
+        database = self.client["Running"]
+        try:
+            names = database.list_collection_names()
+        except Exception as e:
+            print(e)
+            return False
+        for name in names:
+            buff = name.find('dummy')
+            if buff != -1:
+                return True
+            else:
+                continue
+        return False
+
+    def logger(self, blocked_packets):
+        database = self.client["Logged"]
+        collection = database["Stats"]
+        try:
+            collection.insert_one(blocked_packets)
+            return True
+        except Exception as e:
+            print(e)
+            return False
