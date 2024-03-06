@@ -25,16 +25,6 @@ class mongodb:
                 continue
         return False
 
-    def logger(self, blocked_packets):
-        database = self.client["Logged"]
-        collection = database["Stats"]
-        try:
-            collection.insert_one(blocked_packets)
-            return True
-        except Exception as e:
-            print(e)
-            return False
-
     def return_links(self):
         database = self.client["Links"]
         collection = database["Blocked"]
