@@ -106,4 +106,4 @@ The Blocker should now be able to start automatically when restarting the PI.
 Now you only have to set the correct proxy for the devices in the network to benefit from the blocker:
 
 Ip: Ip address of the Raspberry PI
-Port: 3128 (or the port you have specified in suqid.conf)
+Port: 3128 (or the port you have specified in squid.conf)
