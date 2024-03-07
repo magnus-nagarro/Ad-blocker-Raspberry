@@ -100,3 +100,10 @@ sudo python Blocker.py
 Now safe (ctrl+S) and close (ctrl+X) the file and restart your PI.
 
 The Blocker should now be able to start automatically when restarting the PI.
+
+## Configure Devices ##
+
+Now you only have to set the correct proxy for the devices in the network to benefit from the blocker:
+
+Ip: Ip address of the Raspberry PI
+Port: 3128 (or the port you have specified in suqid.conf)
