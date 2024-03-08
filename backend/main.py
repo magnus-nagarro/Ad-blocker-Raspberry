@@ -5,7 +5,7 @@ class Backend():
     def __init__(self) -> None:
         self.db = mongodb()
 
-    # Main flask function
+    # Main flask function -> Flask
     def create_app(self):
         app = Flask(__name__)
 
