@@ -1,6 +1,6 @@
 ### START ###
 
-docker compose up
+docker compose up -d
 
 ### STOP ###
 
@@ -12,7 +12,10 @@ docker compose restart
 
 ### ABOUT ###
 
-Adblocker running in a docker container on a Raspberry PI related project: https://github.com/magnus-nagarro/Ad-blocker-Raspberry-Ui
+Adblocker running in a docker container on a Raspberry PI
+
+### Related Project ###
+https://github.com/magnus-nagarro/Ad-blocker-Raspberry-Ui
 
 # Configuration #
 
