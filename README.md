@@ -29,7 +29,7 @@ https://github.com/magnus-nagarro/Ad-blocker-Raspberry-Ui
 
 # Configuration #
 
-Please note: The path your/projectfoler is often mentioned in this documentation. This refers to the path to the "Ad-blocker-Raspberry" folder, including this folder itself
+Please note: The path your/projectfolder is often mentioned in this documentation. This refers to the path to the "Ad-blocker-Raspberry" folder, including this folder itself.
 
 ## SQUID Installation and Configuration ##
 
