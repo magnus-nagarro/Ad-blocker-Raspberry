@@ -1,20 +1,30 @@
+# Docker #
+
+Normally, the Docker containers should start automatically when you start your Raspberry Pi. If this is not the case, please use the following commands in the project folder:
+
 ### START ###
 
+```
 docker compose up -d
+```
 
 ### STOP ###
 
+```
 docker compose down
+```
 
 ### RESTART ###
 
+```
 docker compose restart
+```
 
-### ABOUT ###
+# ABOUT #
 
 Adblocker running in a docker container on a Raspberry PI
 
-### Related Project ###
+# Related Project #
 https://github.com/magnus-nagarro/Ad-blocker-Raspberry-Ui
 
 # Configuration #
